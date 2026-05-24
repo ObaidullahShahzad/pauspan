@@ -1,60 +1,57 @@
 "use client";
+
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { Layers, Zap, BarChart3, Globe, Palette, Shield, ArrowRight } from "lucide-react";
+import {
+  Layers, Globe, Palette, Shield, Zap, BarChart3, ArrowRight
+} from "lucide-react";
 
-const services = [
+const SERVICES_DATA = [
   {
-    icon: Layers,
-    title: "Strategy Consulting",
-    desc: "Deep market analysis and tailored strategy frameworks that align with your vision and accelerate sustainable growth.",
-    tags: ["Market Research", "Roadmapping", "OKRs"],
-    color: "from-accent/20 to-accent/10",
+    icon: Globe,
+    title: "InfluenceHer",
+    desc: "A high-converting digital transformation project focused on brand growth and frontend excellence.",
+    tags: ["Strategy", "Next.js"],
     accent: "#C8FF00",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=380&fit=crop&q=80",
   },
   {
-    icon: Palette,
-    title: "Brand Development",
-    desc: "Crafting memorable identities that resonate with your audience and set you apart in competitive landscapes.",
-    tags: ["Identity", "Visual Systems", "Guidelines"],
-    color: "from-accent/20 to-accent/10",
+    icon: Zap,
+    title: "Chef Colin",
+    desc: "Premium culinary digital experience implementing modern frameworks and seamless UI design.",
+    tags: ["React.js", "Vercel"],
     accent: "#C8FF00",
     image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=380&fit=crop&q=80",
   },
   {
-    icon: Globe,
-    title: "Digital Transformation",
-    desc: "End-to-end digital solutions that modernize your operations and unlock new channels for value creation.",
-    tags: ["Tech Stack", "Integration", "Automation"],
-    color: "from-accent/20 to-accent/10",
+    icon: BarChart3,
+    title: "Safari Coin",
+    desc: "Performance-driven Web3 landing page integrated with cryptocurrency analytics and engagement tools.",
+    tags: ["Web3.js", "Fintech"],
     accent: "#C8FF00",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=380&fit=crop&q=80",
   },
   {
-    icon: BarChart3,
-    title: "Growth Marketing",
-    desc: "Data-driven campaigns and growth loops engineered to maximize acquisition, retention, and lifetime value.",
-    tags: ["Performance", "SEO", "Campaigns"],
-    color: "from-accent/20 to-accent/10",
+    icon: Layers,
+    title: "Cynq AI",
+    desc: "Advanced AI solution leveraging GPT & LLMs for a seamless and intelligent user interface.",
+    tags: ["AI/ML", "Python"],
     accent: "#C8FF00",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=380&fit=crop&q=80",
   },
   {
-    icon: Zap,
-    title: "Product Design",
-    desc: "User-obsessed product experiences that convert visitors into loyal customers through intuitive, delightful design.",
-    tags: ["UX/UI", "Prototyping", "Testing"],
-    color: "from-accent/20 to-accent/10",
+    icon: Palette,
+    title: "Re-Morph",
+    desc: "Full-scale brand development and clean frontend architecture for modern business identity.",
+    tags: ["Branding", "Tailwind"],
     accent: "#C8FF00",
     image: "https://images.unsplash.com/photo-1616763355548-1b606f439f86?w=600&h=380&fit=crop&q=80",
   },
   {
     icon: Shield,
-    title: "Operations & Scale",
-    desc: "Streamlined processes, robust systems, and scalable infrastructure to support your growth without friction.",
-    tags: ["Processes", "Systems", "Scaling"],
-    color: "from-accent/20 to-accent/10",
+    title: "Beks Media",
+    desc: "Scalable cloud-based media platform optimized for performance and global digital presence.",
+    tags: ["AWS", "Architecture"],
     accent: "#C8FF00",
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=380&fit=crop&q=80",
   },
@@ -64,128 +61,128 @@ export default function ServicesSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!sectionRef.current) return;
-    
-    const initGSAP = async () => {
+    let ctx: any;
+
+    const initAnimations = async () => {
       try {
         const { default: gsap } = await import("gsap");
         const { ScrollTrigger } = await import("gsap/ScrollTrigger");
         gsap.registerPlugin(ScrollTrigger);
 
-        gsap.from(".service-card", {
-          y: 60,
-          opacity: 1,
-          duration: 0.7,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-          },
-        });
-
-        gsap.from(".services-heading", {
-          y: 40,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 85%",
-          },
-        });
+        ctx = gsap.context(() => {
+          gsap.set(".service-card", { opacity: 0, y: 30 });
+          gsap.to(".service-card", {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          });
+        }, sectionRef);
       } catch (error) {
-        console.error("GSAP initialization failed:", error);
+        console.error("GSAP Initialization failed:", error);
       }
     };
-    
-    initGSAP();
+
+    initAnimations();
+    return () => ctx && ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} id="services" className="py-24 relative overflow-hidden">
+    <section ref={sectionRef} id="services" className="py-24 bg-[#0a0a0a] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Heading */}
-        <div className="services-heading text-center max-w-2xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs text-accent border border-accent/20 mb-6">
-            SERVICES
-          </div>
-          <h2 className="font-display font-bold text-4xl sm:text-5xl text-text mb-6">
-            Everything You Need to{" "}
-            <span className="accent-text">Scale Up</span>
+
+        {/* ✅ Header — Image 2 style */}
+        <header className="text-center max-w-3xl mx-auto mb-20">
+
+          {/* Badge — Image 2 style: dark solid, white text, ALL CAPS, tight */}
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#1a1a1a] text-[10px] font-bold tracking-widest text-[#C8FF00] border border-white/20 mb-6 uppercase">
+            Our Portfolios
+          </span>
+
+          {/* Heading — Image 2 style:
+              - font-black ultra heavy
+              - very large, 2 lines
+              - tracking-[-0.03em] tight
+              - leading-[0.95]
+              - lime on second line "Case Studies"
+          */}
+          <h2 className="font-black text-5xl sm:text-6xl lg:text-7xl text-white tracking-[-0.03em] leading-[0.95] mb-6">
+            Featured{" "}
+            <span className="text-[#C8FF00]">Case Studies</span>
           </h2>
-          <p className="text-text-dim leading-relaxed">
-            Comprehensive service solutions engineered to drive measurable outcomes 
-            across every dimension of your business.
+
+          {/* Description — Image 2 style: gray, centered, relaxed */}
+          <p className="text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+            Comprehensive service solutions engineered to drive measurable outcomes across every dimension of your business.
           </p>
-        </div>
+
+        </header>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map(({ icon: Icon, title, desc, tags, color, accent, image }) => (
-            <div
-              key={title}
-              className="service-card group glass-card rounded-2xl overflow-hidden hover:border-white/15 transition-all duration-400 relative !opacity-100 card-3d cursor-pointer"
-            >
-              {/* Image */}
-              <div className="relative w-full h-48 overflow-hidden">
-                <Image
-                  src={image}
-                  alt={title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                {/* Dark gradient overlay to keep dark tech feel */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
-                {/* Icon badge in corner */}
-                <div
-                  className="absolute top-4 left-4 w-10 h-10 rounded-xl flex items-center justify-center"
-                  style={{ background: `${accent}20`, color: accent, backdropFilter: 'blur(8px)', border: `1px solid ${accent}30` }}
-                >
-                  <Icon size={18} />
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6 relative">
-                {/* Gradient bg on hover */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-b-2xl`}
-                />
-
-                <div className="relative z-10">
-                  <h3 className="font-display font-semibold text-lg text-text mb-2 group-hover:text-white transition-colors">
-                    {title}
-                  </h3>
-                  <p className="text-text-dim text-sm leading-relaxed mb-5">{desc}</p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs px-2.5 py-1 rounded-full border"
-                        style={{ background: `${accent}10`, color: accent, borderColor: `${accent}25` }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <a
-                    href="/services"
-                    className="inline-flex items-center gap-2 text-sm font-medium transition-all duration-200 group-hover:gap-3"
-                    style={{ color: accent }}
-                  >
-                    Learn More <ArrowRight size={14} />
-                  </a>
-                </div>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {SERVICES_DATA.map((service, index) => (
+            <ServiceCard key={index} {...service} />
           ))}
         </div>
+
       </div>
     </section>
+  );
+}
+
+function ServiceCard({ icon: Icon, title, desc, tags, accent, image }: any) {
+  return (
+    <article className="service-card group flex flex-col bg-[#111] rounded-[2rem] overflow-hidden border border-white/5 transition-all duration-500 relative cursor-pointer h-full">
+
+      <div className="relative w-full h-52 overflow-hidden flex-shrink-0">
+        <Image
+          src={image}
+          alt={`${title} Interface Preview`}
+          fill
+          className="object-cover transform scale-100 group-hover:scale-110 transition-transform duration-700 ease-in-out"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+
+        <div
+          className="absolute top-5 left-5 w-11 h-11 rounded-xl flex items-center justify-center backdrop-blur-md z-20 border border-white/10 transition-all duration-500 group-hover:rotate-[360deg] group-hover:scale-110"
+          style={{ background: `${accent}20`, color: accent }}
+        >
+          <Icon size={22} />
+        </div>
+      </div>
+
+      <div className="p-8 flex flex-col flex-grow transition-colors duration-500 group-hover:bg-[#1e2303]">
+        <h3 className="font-display font-bold text-xl text-white mb-3 transition-colors duration-500 group-hover:text-[#C8FF00]">
+          {title}
+        </h3>
+        <p className="text-gray-400 text-sm leading-relaxed mb-6 group-hover:text-white/80 transition-colors duration-500">
+          {desc}
+        </p>
+
+        <div className="mt-auto">
+          <div className="flex flex-wrap gap-2 mb-8">
+            {tags.map((tag: string) => (
+              <span
+                key={tag}
+                className="text-[9px] uppercase font-bold tracking-tighter px-3 py-1 rounded-md bg-white/5 border border-white/10 text-gray-400 group-hover:border-[#C8FF00]/30 group-hover:text-white transition-all duration-500"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2 text-sm font-bold text-[#C8FF00] group-hover:gap-3 transition-all duration-300">
+            VIEW CASE STUDY <ArrowRight size={16} />
+          </div>
+        </div>
+      </div>
+    </article>
   );
 }

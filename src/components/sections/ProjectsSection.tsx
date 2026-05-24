@@ -1,11 +1,18 @@
 "use client";
+
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ExternalLink, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
-const projects = [
+// ==========================================
+// CASE STUDIES METADATA CONFIGURATIONS
+// ==========================================
+
+const PORTFOLIO_PROJECTS = [
   {
+    slug: "meridian-finance",
     title: "Meridian Finance",
     category: "Strategy + Brand",
     desc: "Complete rebrand and digital transformation for a $50M fintech firm, resulting in 3x revenue growth.",
@@ -15,6 +22,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=500&fit=crop&q=80",
   },
   {
+    slug: "nova-health",
     title: "Nova Health",
     category: "Product Design",
     desc: "Redesigning a healthcare platform for 1M+ patients with a focus on accessibility and conversion.",
@@ -24,6 +32,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&h=500&fit=crop&q=80",
   },
   {
+    slug: "apex-studio",
     title: "Apex Studio",
     category: "Growth Marketing",
     desc: "Multi-channel growth strategy that took an indie studio from 0 to 50K users in 6 months.",
@@ -33,6 +42,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop&q=80",
   },
   {
+    slug: "stratos-ai",
     title: "Stratos AI",
     category: "Digital Transformation",
     desc: "End-to-end AI integration and operations overhaul for a B2B SaaS scaling from seed to Series A.",
@@ -43,110 +53,130 @@ const projects = [
   },
 ];
 
+// ==========================================
+// MAIN PROJECTS SECTION COMPONENT
+// ==========================================
+
 export default function ProjectsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;
-    
+
+    let ctx: any;
+
     const initGSAP = async () => {
       try {
         const { default: gsap } = await import("gsap");
         const { ScrollTrigger } = await import("gsap/ScrollTrigger");
         gsap.registerPlugin(ScrollTrigger);
 
-        gsap.from(".project-card", {
-          y: 80,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: { 
-            trigger: sectionRef.current, 
-            start: "top 75%" 
-          },
-        });
+        ctx = gsap.context(() => {
+          // Explicit fromTo orchestration to prevent flash of unstyled content
+          gsap.fromTo(".project-card",
+            { y: 60, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              stagger: 0.15,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top 80%",
+                toggleActions: "play none none none"
+              },
+            }
+          );
+        }, sectionRef);
+
       } catch (error) {
-        console.error("GSAP initialization failed:", error);
+        console.error("GSAP initialization failed within Projects Section:", error);
       }
     };
-    
+
     initGSAP();
+
+    // Clean memory footprint on dynamic viewport changes
+    return () => ctx && ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} id="projects" className="py-24 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
-
+    <section ref={sectionRef} id="projects" className="py-24 relative overflow-hidden bg-obsidian">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
+
+        {/* Section Header Controls Row */}
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-16">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs text-accent border border-accent/20 mb-5">
               OUR WORK
             </div>
-            <h2 className="font-display font-bold text-4xl sm:text-5xl text-text">
+            <h2 className="font-display font-bold text-4xl sm:text-5xl text-white">
               Work That <span className="accent-text">Speaks</span>
             </h2>
           </div>
-          <Button variant="outline" href="/projects" className="shrink-0">
-            View All Projects
-            <ArrowRight size={14} />
+          <Button variant="outline" href="/projects" className="shrink-0 border-white/10 text-white hover:bg-white/5">
+            View All Projects <ArrowRight size={14} />
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map(({ title, category, desc, gradient, tags, result, image }) => (
-            <div
+        {/* Portfolio Showcase Responsive Grid Matrix */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {PORTFOLIO_PROJECTS.map(({ title, slug, category, desc, gradient, tags, result, image }) => (
+            <Link
+              href={`/projects/${slug}`}
               key={title}
-              className="project-card group glass-card rounded-2xl overflow-hidden hover:border-accent/30 transition-all duration-400 cursor-pointer !opacity-100"
+              className="project-card group glass-card rounded-3xl overflow-hidden hover:border-accent/30 transition-all duration-500 cursor-pointer block border border-white/5"
             >
-              {/* Image area */}
-              <div
-                className={`relative h-64 bg-gradient-to-br ${gradient} overflow-hidden`}
-              >
+              {/* Media Asset Canvas Frame */}
+              <div className={`relative h-72 bg-gradient-to-br ${gradient} overflow-hidden`}>
                 <Image
                   src={image}
-                  alt={title}
+                  alt={`${title} Digital Mockup`}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                {/* Always-on dark overlay for readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
-                {/* Bottom metadata */}
+
+                {/* Visual Depth Masks and Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+
+                {/* Meta Indicator Badges Layout */}
                 <div className="absolute bottom-4 left-5 right-5 flex items-center justify-between">
-                  <div className="text-xs text-white/70 font-medium">{category}</div>
-                  <div className="bg-accent text-obsidian text-xs font-bold px-3 py-1 rounded-full">
+                  <div className="text-[10px] text-white/70 font-bold uppercase tracking-widest">{category}</div>
+                  <div className="bg-accent text-obsidian text-[10px] font-black px-3 py-1 rounded-full uppercase">
                     {result}
                   </div>
                 </div>
-                {/* View Case Study on hover */}
-                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1.5">
-                  <ExternalLink className="text-white" size={12} />
-                  <span className="text-white text-xs font-medium">Case Study</span>
+
+                {/* Animated Case Study Action Hover Trigger */}
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 flex items-center gap-2 bg-white text-black rounded-full px-4 py-2 font-bold text-xs">
+                  <ExternalLink size={14} /> View Case Study
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="font-display font-semibold text-xl text-text mb-2 group-hover:text-accent transition-colors duration-300">
+              {/* Informational Copy Specifications Container */}
+              <div className="p-8">
+                <h3 className="font-display font-bold text-2xl text-white mb-3 group-hover:text-accent transition-colors duration-300">
                   {title}
                 </h3>
-                <p className="text-text-dim text-sm leading-relaxed mb-5">{desc}</p>
+                <p className="text-text-dim text-sm leading-relaxed mb-6">{desc}</p>
+
+                {/* Project Technology Framework Nodes Mapping */}
                 <div className="flex flex-wrap gap-2">
                   {tags.map((tag) => (
-                    <span key={tag} className="text-xs px-3 py-1 rounded-full bg-accent/10 text-accent border border-accent/20">
+                    <span key={tag} className="text-[10px] px-3 py-1 rounded-md bg-white/5 text-text-dim border border-white/10 uppercase tracking-tighter">
                       {tag}
                     </span>
                   ))}
                 </div>
               </div>
-            </div>
+
+            </Link>
           ))}
         </div>
+
       </div>
     </section>
   );
