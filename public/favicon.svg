@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200">
+  <!-- Dark rounded square background -->
+  <rect x="2" y="2" width="96" height="96" rx="20" ry="20" fill="#111111"/>
+  
+  <!-- Neon green-yellow "P" letter -->
+  <path d="
+    M 30 28
+    L 30 72
+    L 38 72
+    L 38 56
+    L 54 56
+    Q 70 56 70 42
+    Q 70 28 54 28
+    Z
+    M 38 36
+    L 52 36
+    Q 62 36 62 42
+    Q 62 48 52 48
+    L 38 48
+    Z
+  " fill="#CAEF00"/>
+</svg>

@@ -8,6 +8,17 @@ export const metadata: Metadata = {
   title: "Pauspan — Premium Service Solutions",
   description: "Pauspan delivers world-class service solutions that transform businesses. Expert strategy, impeccable execution, extraordinary results.",
   keywords: ["pauspan", "services", "consulting", "solutions", "business"],
+  icons: [
+    {
+      rel: "icon",
+      type: "image/svg+xml",
+      url: "/favicon.svg",
+    },
+    {
+      rel: "apple-touch-icon",
+      url: "/favicon.svg",
+    },
+  ],
 };
 
 export default function RootLayout({
