@@ -1,191 +1,244 @@
 "use client";
-import { useEffect, useRef } from "react";
-import Image from "next/image";
-import { Layers, Zap, BarChart3, Globe, Palette, Shield, ArrowRight } from "lucide-react";
 
-const services = [
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  Bot,
+  BrainCircuit,
+  CheckCircle2,
+  Code2,
+  Layers,
+  Smartphone,
+} from "lucide-react";
+
+const SERVICES = [
   {
+    num: "01",
+    icon: BrainCircuit,
+    title: "AI Transformation",
+    summary:
+      "Intelligent automation and machine learning solutions that modernize operations and unlock new enterprise value.",
+    description:
+      "We evaluate your existing infrastructure and identify high-impact opportunities for artificial intelligence integration. Our specialists develop and deploy custom AI models that streamline workflows, enhance decision making, and provide a definitive competitive edge in your market.",
+    features: [
+      "AI readiness assessment",
+      "Process automation and optimization",
+      "Custom machine learning models",
+      "Data strategy and infrastructure",
+      "Team training and AI adoption",
+    ],
+  },
+  {
+    num: "02",
+    icon: Code2,
+    title: "Web Development",
+    summary:
+      "High-performance web applications engineered for scalability, security, and exceptional user experiences.",
+    description:
+      "We build robust digital platforms tailored to your specific business requirements. From complex enterprise portals to dynamic customer-facing applications, our development team utilizes modern tech stacks to deliver fast, secure, and fully responsive web solutions.",
+    features: [
+      "Custom web application development",
+      "Enterprise portal engineering",
+      "Frontend and backend architecture",
+      "API development and integration",
+      "Performance and security optimization",
+    ],
+  },
+  {
+    num: "03",
+    icon: Bot,
+    title: "AI SaaS",
+    summary:
+      "Cloud-based artificial intelligence software designed to solve specific industry challenges at scale.",
+    description:
+      "We conceptualize, build, and deploy Artificial Intelligence Software as a Service products. By combining scalable cloud infrastructure with advanced AI capabilities, we deliver subscription-based platforms that generate recurring revenue and solve complex user problems natively.",
+    features: [
+      "AI product conceptualization",
+      "Cloud architecture design",
+      "Multi-tenant SaaS development",
+      "AI feature integration",
+      "Continuous deployment and scaling",
+    ],
+  },
+  {
+    num: "04",
     icon: Layers,
-    title: "Strategy Consulting",
-    desc: "Deep market analysis and tailored strategy frameworks that align with your vision and accelerate sustainable growth.",
-    tags: ["Market Research", "Roadmapping", "OKRs"],
-    color: "from-accent/20 to-accent/10",
-    accent: "#C8FF00",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&h=380&fit=crop&q=80",
+    title: "MVP Design & Development",
+    summary:
+      "Rapid prototyping and lean development to validate your product ideas and accelerate time to market.",
+    description:
+      "We help startups and enterprises launch Minimum Viable Products quickly and efficiently. Our process focuses on core functionalities that solve primary user needs, allowing you to gather market feedback, attract investors, and iterate based on real user data.",
+    features: [
+      "Product strategy and scoping",
+      "Wireframing and rapid prototyping",
+      "Core feature development",
+      "User testing and validation",
+      "Post-launch iteration roadmap",
+    ],
   },
   {
-    icon: Palette,
-    title: "Brand Development",
-    desc: "Crafting memorable identities that resonate with your audience and set you apart in competitive landscapes.",
-    tags: ["Identity", "Visual Systems", "Guidelines"],
-    color: "from-accent/20 to-accent/10",
-    accent: "#C8FF00",
-    image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=600&h=380&fit=crop&q=80",
-  },
-  {
-    icon: Globe,
-    title: "Digital Transformation",
-    desc: "End-to-end digital solutions that modernize your operations and unlock new channels for value creation.",
-    tags: ["Tech Stack", "Integration", "Automation"],
-    color: "from-accent/20 to-accent/10",
-    accent: "#C8FF00",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=380&fit=crop&q=80",
-  },
-  {
-    icon: BarChart3,
-    title: "Growth Marketing",
-    desc: "Data-driven campaigns and growth loops engineered to maximize acquisition, retention, and lifetime value.",
-    tags: ["Performance", "SEO", "Campaigns"],
-    color: "from-accent/20 to-accent/10",
-    accent: "#C8FF00",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=380&fit=crop&q=80",
-  },
-  {
-    icon: Zap,
-    title: "Product Design",
-    desc: "User-obsessed product experiences that convert visitors into loyal customers through intuitive, delightful design.",
-    tags: ["UX/UI", "Prototyping", "Testing"],
-    color: "from-accent/20 to-accent/10",
-    accent: "#C8FF00",
-    image: "https://images.unsplash.com/photo-1616763355548-1b606f439f86?w=600&h=380&fit=crop&q=80",
-  },
-  {
-    icon: Shield,
-    title: "Operations & Scale",
-    desc: "Streamlined processes, robust systems, and scalable infrastructure to support your growth without friction.",
-    tags: ["Processes", "Systems", "Scaling"],
-    color: "from-accent/20 to-accent/10",
-    accent: "#C8FF00",
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=380&fit=crop&q=80",
+    num: "05",
+    icon: Smartphone,
+    title: "Mobile App Development",
+    summary:
+      "Native and cross-platform mobile applications designed to engage users and drive business growth on any device.",
+    description:
+      "We engineer intuitive mobile experiences for iOS and Android platforms. Our mobile development process prioritizes seamless performance, intuitive user interfaces, and robust backend architectures to ensure your app scales effortlessly as your user base grows.",
+    features: [
+      "iOS and Android native development",
+      "Cross-platform mobile solutions",
+      "Mobile UI and UX design",
+      "App store optimization and launch",
+      "Ongoing maintenance and support",
+    ],
   },
 ];
 
 export default function ServicesSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-    
-    const initGSAP = async () => {
-      try {
-        const { default: gsap } = await import("gsap");
-        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-        gsap.registerPlugin(ScrollTrigger);
-
-        gsap.from(".service-card", {
-          y: 60,
-          opacity: 1,
-          duration: 0.7,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-          },
-        });
-
-        gsap.from(".services-heading", {
-          y: 40,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 85%",
-          },
-        });
-      } catch (error) {
-        console.error("GSAP initialization failed:", error);
-      }
-    };
-    
-    initGSAP();
-  }, []);
-
   return (
-    <section ref={sectionRef} id="services" className="py-24 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Heading */}
-        <div className="services-heading text-center max-w-2xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs text-accent border border-accent/20 mb-6">
-            SERVICES
-          </div>
-          <h2 className="font-display font-bold text-4xl sm:text-5xl text-text mb-6">
-            Everything You Need to{" "}
-            <span className="accent-text">Scale Up</span>
-          </h2>
-          <p className="text-text-dim leading-relaxed">
-            Comprehensive service solutions engineered to drive measurable outcomes 
-            across every dimension of your business.
-          </p>
-        </div>
+  <section id="services" className="py-24 bg-obsidian relative">
+  <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <div className="grid lg:grid-cols-[400px_minmax(0,1fr)] gap-16">
+      
+      {/* Sticky Left Side */}
+      <div className="hidden lg:block relative">
+        <div className="sticky top-32">
+          <motion.header
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-[#1a1a1a] text-[10px] font-bold tracking-widest text-[#C8FF00] border border-white/20 mb-6 uppercase">
+              Pauspan Services
+            </span>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map(({ icon: Icon, title, desc, tags, color, accent, image }) => (
-            <div
-              key={title}
-              className="service-card group glass-card rounded-2xl overflow-hidden hover:border-white/15 transition-all duration-400 relative !opacity-100 card-3d cursor-pointer"
-            >
-              {/* Image */}
-              <div className="relative w-full h-48 overflow-hidden">
-                <Image
-                  src={image}
-                  alt={title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                {/* Dark gradient overlay to keep dark tech feel */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
-                {/* Icon badge in corner */}
-                <div
-                  className="absolute top-4 left-4 w-10 h-10 rounded-xl flex items-center justify-center"
-                  style={{ background: `${accent}20`, color: accent, backdropFilter: 'blur(8px)', border: `1px solid ${accent}30` }}
-                >
-                  <Icon size={18} />
-                </div>
-              </div>
+            <h2 className="font-black text-6xl text-white leading-[0.95] mb-6">
+              What We Do{" "}
+              <span className="text-[#C8FF00]">
+                Best
+              </span>
+            </h2>
 
-              {/* Content */}
-              <div className="p-6 relative">
-                {/* Gradient bg on hover */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-b-2xl`}
-                />
+            <p className="text-gray-400 text-lg leading-relaxed">
+              Five core service areas staffed by technology specialists
+              dedicated to delivering measurable business value and
+              future-ready digital products.
+            </p>
 
-                <div className="relative z-10">
-                  <h3 className="font-display font-semibold text-lg text-text mb-2 group-hover:text-white transition-colors">
-                    {title}
-                  </h3>
-                  <p className="text-text-dim text-sm leading-relaxed mb-5">{desc}</p>
+            <div className="mt-10 border border-white/10 bg-white/[0.035] rounded-2xl p-6">
+              <p className="text-[10px] uppercase tracking-[0.25em] font-black text-[#C8FF00] mb-4">
+                Pauspan
+              </p>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs px-2.5 py-1 rounded-full border"
-                        style={{ background: `${accent}10`, color: accent, borderColor: `${accent}25` }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <a
-                    href="/services"
-                    className="inline-flex items-center gap-2 text-sm font-medium transition-all duration-200 group-hover:gap-3"
-                    style={{ color: accent }}
-                  >
-                    Learn More <ArrowRight size={14} />
-                  </a>
-                </div>
-              </div>
+              <p className="text-white/65 text-sm leading-relaxed">
+                We craft extraordinary digital solutions that transform
+                businesses. Premium engineering, impeccable execution,
+                measurable results.
+              </p>
             </div>
-          ))}
+          </motion.header>
         </div>
       </div>
-    </section>
+
+      {/* Mobile Header */}
+      <div className="lg:hidden">
+        <span className="inline-block px-4 py-1.5 rounded-full bg-[#1a1a1a] text-[10px] font-bold tracking-widest text-[#C8FF00] border border-white/20 mb-6 uppercase">
+          Pauspan Services
+        </span>
+
+        <h2 className="font-black text-5xl text-white leading-[0.95] mb-6">
+          What We Do <span className="text-[#C8FF00]">Best</span>
+        </h2>
+
+        <p className="text-gray-400 text-lg leading-relaxed mb-12">
+          Five core service areas staffed by technology specialists
+          dedicated to delivering measurable business value and
+          future-ready digital products.
+        </p>
+      </div>
+
+      {/* Cards */}
+      <div className="space-y-5">
+        {SERVICES.map((service, index) => (
+          <ServiceItem
+            key={service.title}
+            service={service}
+            index={index}
+          />
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+  );
+}
+
+function ServiceItem({
+  service,
+  index,
+}: {
+  service: (typeof SERVICES)[number];
+  index: number;
+}) {
+  const Icon = service.icon;
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 34 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-70px" }}
+      transition={{ duration: 0.65, delay: index * 0.06, ease: "easeOut" }}
+      className="group border border-white/10 bg-white/[0.035] rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:border-[#C8FF00]/35 hover:bg-[#11160a]"
+    >
+      <div className="grid grid-cols-1 gap-7 xl:grid-cols-[220px_1fr]">
+        <div className="flex xl:block items-start gap-5">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-[#C8FF00]/20 bg-[#C8FF00]/10 text-[#C8FF00] transition-transform duration-300 group-hover:scale-105">
+            <Icon size={26} />
+          </div>
+
+          <div className="xl:mt-6 min-w-0">
+            <p className="font-display text-5xl font-black leading-none text-[#C8FF00]/35">
+              {service.num}
+            </p>
+            <h3 className="mt-3 font-display text-2xl font-bold leading-tight text-white group-hover:text-[#C8FF00] transition-colors duration-300">
+              {service.title}
+            </h3>
+          </div>
+        </div>
+
+        <div>
+          <p className="text-lg font-semibold leading-snug text-white">
+            {service.summary}
+          </p>
+
+          <p className="mt-4 text-sm sm:text-base leading-relaxed text-white/58">
+            {service.description}
+          </p>
+
+          <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {service.features.map((feature) => (
+              <div key={feature} className="flex items-start gap-3">
+                <CheckCircle2
+                  size={16}
+                  className="mt-0.5 shrink-0 text-[#C8FF00]/75"
+                />
+                <span className="text-sm leading-relaxed text-white/62">
+                  {feature}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href="/contact"
+            className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-[#C8FF00] transition-all duration-300 group-hover:gap-3"
+          >
+            Get started with {service.title} <ArrowRight size={16} />
+          </a>
+        </div>
+      </div>
+    </motion.article>
   );
 }

@@ -1,159 +1,195 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
-import { ExternalLink, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 
-const categories = ["All", "Strategy", "Branding", "Digital", "Product", "Growth"];
+import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, ExternalLink, SlidersHorizontal } from "lucide-react";
+import { CASE_STUDIES } from "@/data/case-studies";
 
-const projects = [
-  { title: "Meridian Finance", category: "Strategy", result: "+300% Revenue", desc: "Complete rebrand and digital transformation for a $50M fintech firm. Rearchitected their go-to-market strategy and rebuilt their digital presence from the ground up.", gradient: "from-blue-600 via-violet-600 to-purple-700", tags: ["Strategy", "Branding", "Web"], year: "2024" },
-  { title: "Nova Health", category: "Product", result: "+150% Signups", desc: "Redesigning a healthcare platform serving 1M+ patients. We redesigned the complete user journey, reducing drop-off by 60% and doubling signups.", gradient: "from-emerald-500 via-teal-600 to-cyan-700", tags: ["UX/UI", "Product", "Mobile"], year: "2024" },
-  { title: "Apex Studio", category: "Growth", result: "50K Users", desc: "A multi-channel growth strategy that took an indie studio from 0 to 50,000 users in 6 months through targeted content and community building.", gradient: "from-orange-500 via-red-500 to-pink-600", tags: ["Marketing", "Growth", "Social"], year: "2023" },
-  { title: "Stratos AI", category: "Digital", result: "Series A", desc: "End-to-end AI integration and operations overhaul for a B2B SaaS, positioning them for their successful Series A raise.", gradient: "from-indigo-500 via-blue-600 to-cyan-600", tags: ["Tech", "AI", "Ops"], year: "2024" },
-  { title: "Bloom Agency", category: "Branding", result: "3x Clients", desc: "Full brand identity and positioning work for a boutique creative agency. New visual system tripled their inbound inquiries within 90 days.", gradient: "from-pink-500 via-rose-500 to-red-600", tags: ["Branding", "Identity", "Strategy"], year: "2023" },
-  { title: "Clearify SaaS", category: "Product", result: "4.9★ Rating", desc: "Product design overhaul for a project management tool. User satisfaction scores jumped from 3.2 to 4.9 stars following redesign.", gradient: "from-cyan-500 via-sky-600 to-blue-700", tags: ["Product", "UX/UI", "Design"], year: "2023" },
-  { title: "Taskflow", category: "Strategy", result: "$2M ARR", desc: "Growth strategy and product positioning that helped Taskflow hit $2M ARR within 18 months of launch.", gradient: "from-yellow-500 via-amber-500 to-orange-600", tags: ["Strategy", "Growth", "Ops"], year: "2024" },
-  { title: "PerspectiveAI", category: "Digital", result: "10x Scale", desc: "Digital transformation project that automated 80% of their manual workflows, allowing them to scale 10x without adding headcount.", gradient: "from-violet-600 via-purple-600 to-fuchsia-700", tags: ["Digital", "AI", "Automation"], year: "2024" },
+const CATEGORIES = [
+  "All",
+  ...Array.from(new Set(CASE_STUDIES.map((project) => project.category))),
 ];
 
 export default function ProjectsPage() {
-  const [active, setActive] = useState("All");
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeCategory, setActiveCategory] = useState("All");
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const filtered = active === "All" ? projects : projects.filter((p) => p.category === active);
+  const filteredProjects = useMemo(() => {
+    if (activeCategory === "All") {
+      return CASE_STUDIES;
+    }
+
+    return CASE_STUDIES.filter((project) => project.category === activeCategory);
+  }, [activeCategory]);
 
   useEffect(() => {
-    const initGSAP = async () => {
+    let ctx: { revert: () => void } | undefined;
+
+    const initAnimations = async () => {
       try {
         const { default: gsap } = await import("gsap");
-        gsap.from(".projects-hero > *", {
-          y: 40,
-          opacity: 0,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: "power3.out",
-          immediateRender: false,
-        });
+
+        ctx = gsap.context(() => {
+          gsap.fromTo(
+            ".projects-hero > *",
+            { y: 32, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.7,
+              stagger: 0.08,
+              ease: "power3.out",
+            }
+          );
+        }, containerRef);
       } catch (error) {
         console.error("GSAP initialization failed:", error);
       }
     };
-    initGSAP();
+
+    initAnimations();
+    return () => ctx?.revert();
   }, []);
 
   useEffect(() => {
-    const animate = async () => {
+    const animateCards = async () => {
       try {
         const { default: gsap } = await import("gsap");
+
         gsap.fromTo(
-          ".project-item",
-          { y: 30, opacity: 0 },
+          ".project-list-card",
+          { opacity: 0, y: 18 },
           {
-            y: 0,
             opacity: 1,
-            duration: 0.5,
-            stagger: 0.08,
-            ease: "power3.out",
-            immediateRender: false,
+            y: 0,
+            stagger: 0.06,
+            duration: 0.45,
+            ease: "power2.out",
           }
         );
       } catch (error) {
-        console.error("GSAP initialization failed:", error);
+        console.error("GSAP card animation failed:", error);
       }
     };
-    animate();
-  }, [active]);
+
+    animateCards();
+  }, [activeCategory]);
 
   return (
-    <div className="min-h-screen pt-20">
-      {/* Hero */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="projects-hero max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs text-accent border border-accent/20 mb-6">
-              OUR WORK
+    <div ref={containerRef} className="min-h-screen bg-obsidian pt-20">
+      <section className="relative overflow-hidden py-24">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
+          <div className="projects-hero max-w-4xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs text-accent border border-accent/20 mb-6 uppercase tracking-widest">
+              Our Work
             </div>
-            <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl text-text leading-[1.05] mb-6">
-              Work That <span className="accent-text">Moves</span> the Needle
+
+            <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl text-white leading-[1.05] mb-6">
+              Case Studies Built for <span className="accent-text">Real Outcomes</span>
             </h1>
-            <p className="text-text-dim text-xl leading-relaxed">
-              Real projects. Real results. Every case study represents a partnership built on trust, craft, and accountability.
+
+            <p className="text-white/60 text-xl leading-relaxed max-w-2xl">
+              Explore the latest Pauspan projects across AI platforms, creator tools, Web3 ecosystems, educational products, and media workflow automation.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Filter */}
-      <section ref={sectionRef} className="pb-32">
+      <section className="pb-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex flex-wrap gap-3 mb-12">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActive(cat)}
-                className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
-                  active === cat
-                    ? "bg-accent text-obsidian font-bold shadow-[0_0_20px_rgba(200,255,0,0.3)]"
-                    : "glass-card text-text-dim hover:text-text hover:border-white/15"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+          <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-white/40">
+              <SlidersHorizontal size={14} className="text-accent" />
+              Filter Projects
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              {CATEGORIES.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  className={`rounded-xl px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
+                    activeCategory === category
+                      ? "bg-accent text-black shadow-[0_0_20px_rgba(200,255,0,0.28)]"
+                      : "border border-white/10 bg-white/5 text-white/60 hover:border-accent/30 hover:text-white"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map(({ title, result, desc, gradient, tags, year }) => (
-              <div
-                key={title}
-                className="project-item glass-card rounded-2xl overflow-hidden hover:border-white/15 transition-all duration-400 group cursor-pointer"
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {filteredProjects.map((project) => (
+              <Link
+                key={project.slug}
+                href={`/projects/${project.slug}`}
+                className="project-list-card group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] transition-all duration-500 hover:-translate-y-1 hover:border-accent/35"
               >
-                <div className={`relative h-48 bg-gradient-to-br ${gradient}`}>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-display font-bold text-5xl text-white/15 group-hover:text-white/25 transition-colors">
-                      {title[0]}
+                <div className="relative h-56 overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} case study`}
+                    fill
+                    unoptimized
+                    className="object-cover brightness-[0.72] transition-transform duration-700 group-hover:scale-105 group-hover:brightness-90"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-70`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+
+                  <div className="absolute left-5 top-5 rounded-full border border-white/15 bg-black/45 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white/70 backdrop-blur-md">
+                    {project.year}
+                  </div>
+
+                  <div className="absolute right-5 top-5 rounded-full bg-accent px-3 py-1 text-[10px] font-black uppercase tracking-wider text-black">
+                    {project.category}
+                  </div>
+
+                  <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between gap-4">
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-accent">
+                      {project.result}
                     </span>
+                    <ExternalLink
+                      size={18}
+                      className="text-white/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    />
                   </div>
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                    <ExternalLink className="text-white" size={18} />
-                    <span className="text-white text-sm">View Case Study</span>
-                  </div>
-                  <div className="absolute top-4 right-4 bg-accent text-obsidian text-xs font-bold px-3 py-1 rounded-full">
-                    {result}
-                  </div>
-                  <div className="absolute top-4 left-4 text-white/60 text-xs">{year}</div>
                 </div>
-                <div className="p-6">
-                  <h3 className="font-display font-semibold text-xl text-text mb-2 group-hover:text-white transition-colors">
-                    {title}
-                  </h3>
-                  <p className="text-text-dim text-sm leading-relaxed mb-4">{desc}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {tags.map((tag) => (
-                      <span key={tag} className="text-xs px-2.5 py-1 rounded-full bg-subtle text-text-dim">{tag}</span>
+
+                <div className="flex flex-1 flex-col p-6">
+                  <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.18em] text-accent">
+                    {project.eyebrow}
+                  </p>
+
+                  <h2 className="font-display text-2xl font-bold text-white transition-colors duration-300 group-hover:text-accent">
+                    {project.title}
+                  </h2>
+
+                  <p className="mt-3 text-sm leading-relaxed text-white/55">
+                    {project.headline}
+                  </p>
+
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white/45"
+                      >
+                        {tag}
+                      </span>
                     ))}
                   </div>
-                  <a href="#" className="inline-flex items-center gap-2 text-xs text-accent font-medium hover:gap-3 transition-all">
-                    Read Case Study <ArrowRight size={12} />
-                  </a>
+
+                  <div className="mt-auto pt-8 text-sm font-bold text-accent inline-flex items-center gap-2 transition-all duration-300 group-hover:gap-3">
+                    Read Case Study <ArrowRight size={15} />
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-24 border-t border-glass-border">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="font-display font-bold text-4xl text-text mb-6">
-            Want to Be Our Next <span className="accent-text">Success Story?</span>
-          </h2>
-          <p className="text-text-dim mb-10">Let&apos;s discuss your project and see how we can deliver similar results for your business.</p>
-          <Button variant="primary" size="lg" href="/contact">
-            Start a Conversation <ArrowRight size={16} />
-          </Button>
         </div>
       </section>
     </div>
