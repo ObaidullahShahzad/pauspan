@@ -139,7 +139,7 @@ export default function StatsSection() {
 
               {/* Informational Text Hierarchies */}
               <div className="font-bold text-white text-lg mb-2">{label}</div>
-              <div className="text-sm text-gray-500 group-hover:text-gray-400 transition-colors leading-relaxed">
+              <div className="text-sm text-white/80 group-hover:text-white/80 transition-colors leading-relaxed">
                 {desc}
               </div>
 

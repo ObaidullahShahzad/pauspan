@@ -111,7 +111,7 @@ function TestimonialCard({ t, index }: { t: typeof TESTIMONIALS_DATA[0]; index: 
               </div>
               <Quote size={20} className="text-white/5 group-hover:text-accent/20 transition-colors" />
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed mb-8 italic">
+            <p className="text-white/80 text-sm leading-relaxed mb-8 italic">
               &ldquo;{t.text}&rdquo;
             </p>
           </div>
@@ -122,7 +122,7 @@ function TestimonialCard({ t, index }: { t: typeof TESTIMONIALS_DATA[0]; index: 
             </div>
             <div>
               <p className="font-bold text-sm text-white">{t.name}</p>
-              <p className="text-[10px] text-gray-500 uppercase tracking-widest font-medium">
+              <p className="text-[10px] text-white/80 uppercase tracking-widest font-medium">
                 {t.role}
               </p>
             </div>
@@ -150,7 +150,7 @@ export default function TestimonialsSection() {
           <h2 className="font-display font-bold text-4xl sm:text-5xl text-white mb-6">
             Success Stories Worth <span className="accent-text">Sharing</span>
           </h2>
-          <p className="text-gray-400">
+          <p className="text-white/80">
             Real feedback from founders and leaders who trusted us with their brand — and never looked back.
           </p>
         </div>

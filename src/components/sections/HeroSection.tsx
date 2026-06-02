@@ -119,7 +119,7 @@ export default function HeroSection() {
             </h1>
 
             {/* Description */}
-            <p className="hero-desc text-text-dim text-lg leading-relaxed max-w-md">
+            <p className="hero-desc text-white/80 text-lg leading-relaxed max-w-md">
               Pauspan leverages a premium tech stack—from{" "}
               <span className="text-text">Next.js</span> to{" "}
               <span className="text-text">AI/LLMs</span>—to build scalable
@@ -145,7 +145,7 @@ export default function HeroSection() {
                   </div>
                   <div>
                     <div className="font-display font-bold text-xl text-text">{value}</div>
-                    <div className="text-xs text-text-dim">{label}</div>
+                    <div className="text-xs text-white/80">{label}</div>
                   </div>
                 </div>
               ))}

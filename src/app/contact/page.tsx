@@ -61,7 +61,7 @@ export default function ContactPage() {
             <h1 className="contact-animate font-display font-bold text-5xl sm:text-6xl text-white leading-[1.05] mb-6 opacity-0">
               Let&apos;s Build <span className="accent-text">Together</span>
             </h1>
-            <p className="contact-animate text-gray-400 text-xl leading-relaxed opacity-0">
+            <p className="contact-animate text-white/80 text-xl leading-relaxed opacity-0">
               Tell us about your project and we&apos;ll get back to you within 24 hours with a tailored proposal.
             </p>
           </div>
@@ -76,7 +76,7 @@ export default function ContactPage() {
             <div className="space-y-6">
               <div>
                 <h2 className="font-display font-semibold text-2xl text-white mb-2">Get in Touch</h2>
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-white/80 text-sm leading-relaxed">
                   We typically respond within a few hours. For urgent matters, give us a call.
                 </p>
               </div>
@@ -88,7 +88,7 @@ export default function ContactPage() {
                     <Icon size={18} />
                   </div>
                   <div>
-                    <div className="text-xs text-gray-500 mb-1">{label}</div>
+                    <div className="text-xs text-white/80 mb-1">{label}</div>
                     <div className="text-sm text-white font-medium">{value}</div>
                   </div>
                 </a>
@@ -96,7 +96,7 @@ export default function ContactPage() {
 
               <div className="glass-card rounded-xl p-6">
                 <h3 className="font-display font-semibold text-white mb-3">Office Hours</h3>
-                <div className="space-y-2 text-sm text-gray-400">
+                <div className="space-y-2 text-sm text-white/80">
                   <div className="flex justify-between">
                     <span>Monday – Friday</span>
                     <span className="text-white">9am – 6pm EST</span>
@@ -119,7 +119,7 @@ export default function ContactPage() {
                 <div className="glass-card rounded-2xl p-16 text-center">
                   <CheckCircle2 size={56} className="text-accent mx-auto mb-6" />
                   <h3 className="font-display font-bold text-3xl text-white mb-4">Message Received!</h3>
-                  <p className="text-gray-400 max-w-sm mx-auto">
+                  <p className="text-white/80 max-w-sm mx-auto">
                     Thank you for reaching out. We&apos;ll review your project and be in touch within 24 hours.
                   </p>
                   <Button variant="primary" className="mt-8" onClick={() => setSubmitted(false)}>
@@ -130,7 +130,7 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit} className="glass-card rounded-2xl p-8 space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm text-gray-400 mb-2">Full Name *</label>
+                      <label className="block text-sm text-white/80 mb-2">Full Name *</label>
                       <input
                         type="text" required
                         value={form.name}
@@ -140,7 +140,7 @@ export default function ContactPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm text-gray-400 mb-2">Email *</label>
+                      <label className="block text-sm text-white/80 mb-2">Email *</label>
                       <input
                         type="type" required
                         value={form.email}
@@ -152,7 +152,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm text-gray-400 mb-2">Company</label>
+                    <label className="block text-sm text-white/80 mb-2">Company</label>
                     <input
                       type="text"
                       value={form.company}
@@ -163,7 +163,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm text-gray-400 mb-2">Service Interested In</label>
+                    <label className="block text-sm text-white/80 mb-2">Service Interested In</label>
                     <select
                       value={form.service}
                       onChange={(e) => setForm({ ...form, service: e.target.value })}
@@ -177,7 +177,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm text-gray-400 mb-2">Tell Us About Your Project *</label>
+                    <label className="block text-sm text-white/80 mb-2">Tell Us About Your Project *</label>
                     <textarea
                       required rows={5}
                       value={form.message}

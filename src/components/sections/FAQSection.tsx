@@ -85,7 +85,7 @@ export default function FAQSection() {
           <h2 className="font-display font-bold text-4xl sm:text-5xl text-white mb-6 tracking-tight">
             Common <span className="text-[#C8FF00]">Questions</span>
           </h2>
-          <p className="text-gray-400">
+          <p className="text-white/80">
             Have a question we didn't cover? Reach out to hello@pauspan.com and we'll get back to you within 24 hours.
           </p>
         </div>
@@ -111,7 +111,7 @@ export default function FAQSection() {
                 </h3>
                 <div className={`shrink-0 transition-transform duration-500 ${expanded === i ? "rotate-180" : "rotate-0"
                   }`}>
-                  <ChevronDown size={20} className={expanded === i ? "text-[#C8FF00]" : "text-gray-500"} />
+                  <ChevronDown size={20} className={expanded === i ? "text-[#C8FF00]" : "text-white/80"} />
                 </div>
               </button>
 
@@ -130,7 +130,7 @@ export default function FAQSection() {
                   >
                     <div className="px-6 pb-6 pt-0">
                       <div className="pt-4 border-t border-white/5">
-                        <p className="text-gray-400 leading-relaxed text-sm">
+                        <p className="text-white/80 leading-relaxed text-sm">
                           {faq.a}
                         </p>
                       </div>

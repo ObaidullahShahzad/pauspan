@@ -120,7 +120,7 @@ export default function ServicesSection() {
               </span>
             </h2>
 
-            <p className="text-gray-400 text-lg leading-relaxed">
+            <p className="text-white/80 text-lg leading-relaxed">
               Five core service areas staffed by technology specialists
               dedicated to delivering measurable business value and
               future-ready digital products.
@@ -131,7 +131,7 @@ export default function ServicesSection() {
                 Pauspan
               </p>
 
-              <p className="text-white/65 text-sm leading-relaxed">
+               <p className="text-white/80 text-sm leading-relaxed">
                 We craft extraordinary digital solutions that transform
                 businesses. Premium engineering, impeccable execution,
                 measurable results.
@@ -151,7 +151,7 @@ export default function ServicesSection() {
           What We Do <span className="text-[#C8FF00]">Best</span>
         </h2>
 
-        <p className="text-gray-400 text-lg leading-relaxed mb-12">
+        <p className="text-white/80 text-lg leading-relaxed mb-12">
           Five core service areas staffed by technology specialists
           dedicated to delivering measurable business value and
           future-ready digital products.
@@ -213,7 +213,7 @@ function ServiceItem({
             {service.summary}
           </p>
 
-          <p className="mt-4 text-sm sm:text-base leading-relaxed text-white/58">
+          <p className="mt-4 text-sm sm:text-base leading-relaxed text-white/80">
             {service.description}
           </p>
 
@@ -224,7 +224,7 @@ function ServiceItem({
                   size={16}
                   className="mt-0.5 shrink-0 text-[#C8FF00]/75"
                 />
-                <span className="text-sm leading-relaxed text-white/62">
+                <span className="text-sm leading-relaxed text-white/80">
                   {feature}
                 </span>
               </div>

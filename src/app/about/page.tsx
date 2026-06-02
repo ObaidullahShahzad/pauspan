@@ -161,10 +161,10 @@ export default function AboutPage() {
                 <br />
                 <span className="accent-text">We&apos;re Your Partner.</span>
               </h1>
-              <p className="about-hero-animate text-gray-400 text-lg leading-relaxed opacity-0">
+              <p className="about-hero-animate text-white/80 text-lg leading-relaxed opacity-0">
                 Pauspan was founded on a simple belief: that businesses deserve service partners who are as invested in their success as they are. We bring elite-level expertise without the bureaucracy, and we hold ourselves accountable to real results.
               </p>
-              <p className="about-hero-animate text-gray-400 leading-relaxed opacity-0">
+              <p className="about-hero-animate text-white/80 leading-relaxed opacity-0">
                 Since our founding, we&apos;ve worked with over 200 companies across 30+ industries, from venture-backed startups to enterprise firms. What unites all our work is a relentless focus on outcomes over outputs.
               </p>
               <div className="about-hero-animate flex gap-4 opacity-0">
@@ -186,15 +186,15 @@ export default function AboutPage() {
               <div className="absolute w-56 h-56 rounded-full border border-white/5 bg-gradient-to-br from-accent/10 to-transparent" />
               <div className="relative z-10 text-center">
                 <div className="font-display font-bold text-7xl text-accent">200+</div>
-                <div className="text-gray-400 text-sm mt-2">Brands Transformed</div>
+                <div className="text-white/80 text-sm mt-2">Brands Transformed</div>
               </div>
               <div className="absolute top-8 right-8 glass-card rounded-xl p-4 text-center">
                 <div className="font-display font-bold text-2xl text-white">$50M+</div>
-                <div className="text-xs text-gray-400 mt-1">Revenue Generated</div>
+                <div className="text-xs text-white/80 mt-1">Revenue Generated</div>
               </div>
               <div className="absolute bottom-8 left-8 glass-card rounded-xl p-4 text-center">
                 <div className="font-display font-bold text-2xl text-white">98%</div>
-                <div className="text-xs text-gray-400 mt-1">Client Retention</div>
+                <div className="text-xs text-white/80 mt-1">Client Retention</div>
               </div>
             </div>
           </div>
@@ -220,7 +220,7 @@ export default function AboutPage() {
                   <Icon size={22} />
                 </div>
                 <h3 className="font-display font-semibold text-lg text-white mb-3">{title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
+                <p className="text-white/80 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -259,7 +259,7 @@ export default function AboutPage() {
                 <div className="p-6">
                   <h3 className="font-display font-semibold text-lg text-white mb-1">{name}</h3>
                   <div className="text-xs text-accent mb-3">{role}</div>
-                  <p className="text-gray-400 text-sm leading-relaxed">{bio}</p>
+                  <p className="text-white/80 text-sm leading-relaxed">{bio}</p>
                 </div>
               </div>
             ))}

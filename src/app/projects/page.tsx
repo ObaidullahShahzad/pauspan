@@ -89,7 +89,7 @@ export default function ProjectsPage() {
               Case Studies Built for <span className="accent-text">Real Outcomes</span>
             </h1>
 
-            <p className="text-white/60 text-xl leading-relaxed max-w-2xl">
+            <p className="text-white/80 text-xl leading-relaxed max-w-2xl">
               Explore the latest Pauspan projects across AI platforms, creator tools, Web3 ecosystems, educational products, and media workflow automation.
             </p>
           </div>
@@ -99,7 +99,7 @@ export default function ProjectsPage() {
       <section className="pb-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-white/40">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-white/80">
               <SlidersHorizontal size={14} className="text-accent" />
               Filter Projects
             </div>
@@ -168,7 +168,7 @@ export default function ProjectsPage() {
                     {project.title}
                   </h2>
 
-                  <p className="mt-3 text-sm leading-relaxed text-white/55">
+                  <p className="mt-3 text-sm leading-relaxed text-white/80">
                     {project.headline}
                   </p>
 
@@ -176,7 +176,7 @@ export default function ProjectsPage() {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white/45"
+                          className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white/80"
                       >
                         {tag}
                       </span>

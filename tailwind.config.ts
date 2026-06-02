@@ -25,7 +25,7 @@ const config: Config = {
         muted: "#4A4A5A",
         subtle: "#2A2A3A",
         text: "#E8E8F0",
-        "text-dim": "#8888A0",
+        "text-dim": "rgba(255,255,255,0.8)",
       },
       animation: {
         "marquee": "marquee 30s linear infinite",

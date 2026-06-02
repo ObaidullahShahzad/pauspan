@@ -1,69 +1,59 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Layers, Zap, BarChart3, Globe, Palette, Shield, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Zap, BarChart3, Globe, Layers, Shield, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-
 // ==========================================
 // DATA ARCHITECTURE LAYER CONFIGURATIONS
 // ==========================================
 
 const SERVICES_DATA_CONFIG = [
   {
-    icon: Layers,
-    title: "Strategy Consulting",
-    shortDesc: "Deep market analysis and tailored frameworks that accelerate growth.",
-    longDesc: "We begin with a comprehensive audit of your market position, competitive landscape, and internal capabilities. Our strategists synthesize this into an actionable roadmap with clear milestones, KPIs, and accountability structures.",
-    features: ["Market & competitor research", "Growth roadmap creation", "OKR framework setup", "Quarterly strategy reviews", "Executive alignment workshops"],
-    color: "#C8FF00",
-    gradient: "from-accent/20 to-accent/10",
-  },
-  {
-    icon: Palette,
-    title: "Brand Development",
-    shortDesc: "Memorable identities that resonate and differentiate in crowded markets.",
-    longDesc: "From naming and positioning to full visual identity systems, we create brands that people remember and trust. Every touchpoint is considered, every element deliberate.",
-    features: ["Brand naming & positioning", "Logo & visual identity", "Brand guidelines & systems", "Messaging framework", "Social media templates"],
+    icon: Zap,
+    title: "AI Transformation",
+    shortDesc: "Intelligent automation and machine learning solutions that modernize operations and unlock new enterprise value.",
+    longDesc: "We evaluate your existing infrastructure and identify high-impact opportunities for artificial intelligence integration. Our specialists develop and deploy custom AI models that streamline workflows, enhance decision making, and provide a definitive competitive edge in your market.",
+    features: ["AI readiness assessment", "Process automation and optimization", "Custom machine learning models", "Data strategy and infrastructure", "Team training and AI adoption"],
     color: "#C8FF00",
     gradient: "from-accent/20 to-accent/10",
   },
   {
     icon: Globe,
-    title: "Digital Transformation",
-    shortDesc: "Modernizing operations and unlocking new value through technology.",
-    longDesc: "We assess your current technology stack, identify inefficiencies, and architect a transformation plan that moves the needle without disrupting your operations.",
-    features: ["Tech stack audit & planning", "Process automation", "Custom integrations", "Data infrastructure", "Team training & enablement"],
+    title: "Web Development",
+    shortDesc: "High-performance web applications engineered for scalability, security, and exceptional user experiences.",
+    longDesc: "We build robust digital platforms tailored to your specific business requirements. From complex enterprise portals to dynamic customer-facing applications, our development team utilizes modern tech stacks to deliver fast, secure, and fully responsive web solutions.",
+    features: ["Custom web application development", "Enterprise portal engineering", "Frontend and backend architecture", "API development and integration", "Performance and security optimization"],
     color: "#C8FF00",
     gradient: "from-accent/20 to-accent/10",
   },
   {
     icon: BarChart3,
-    title: "Growth Marketing",
-    shortDesc: "Data-driven campaigns engineered to maximize acquisition and retention.",
-    longDesc: "We design and execute multi-channel growth strategies grounded in data. From paid acquisition to organic content and lifecycle marketing, every campaign is measurable and optimizable.",
-    features: ["Paid media management", "SEO & content strategy", "Email & lifecycle marketing", "Analytics & attribution", "Conversion rate optimization"],
+    title: "AI SaaS",
+    shortDesc: "Cloud-based artificial intelligence software designed to solve specific industry challenges at scale.",
+    longDesc: "We conceptualize, build, and deploy Artificial Intelligence Software as a Service products. By combining scalable cloud infrastructure with advanced AI capabilities, we deliver subscription-based platforms that generate recurring revenue and solve complex user problems natively.",
+    features: ["AI product conceptualization", "Cloud architecture design", "Multi-tenant SaaS development", "AI feature integration", "Continuous deployment and scaling"],
     color: "#C8FF00",
     gradient: "from-accent/20 to-accent/10",
   },
   {
-    icon: Zap,
-    title: "Product Design",
-    shortDesc: "User-obsessed experiences that convert visitors into loyal customers.",
-    longDesc: "We combine research, psychology, and craft to design products that people love using. Our design process is collaborative, iterative, and always anchored in real user needs.",
-    features: ["User research & testing", "Wireframing & prototyping", "UI design systems", "Interaction design", "Handoff & developer support"],
+    icon: Layers,
+    title: "MVP Design & Development",
+    shortDesc: "Rapid prototyping and lean development to validate your product ideas and accelerate time to market.",
+    longDesc: "We help startups and enterprises launch Minimum Viable Products quickly and efficiently. Our process focuses on core functionalities that solve primary user needs, allowing you to gather market feedback, attract investors, and iterate based on real user data.",
+    features: ["Product strategy and scoping", "Wireframing and rapid prototyping", "Core feature development", "User testing and validation", "Post-launch iteration roadmap"],
     color: "#C8FF00",
     gradient: "from-accent/20 to-accent/10",
   },
   {
     icon: Shield,
-    title: "Operations & Scale",
-    shortDesc: "Streamlined processes and robust infrastructure to support growth.",
-    longDesc: "As you scale, operational complexity grows. We build the systems, documentation, and processes that let you grow without breaking things — from team structure to technology.",
-    features: ["Operational audit", "SOPs & documentation", "Team structure design", "Vendor management", "Scalability planning"],
+    title: "Mobile App Development",
+    shortDesc: "Native and cross-platform mobile applications designed to engage users and drive business growth on any device.",
+    longDesc: "We engineer intuitive mobile experiences for iOS and Android platforms. Our mobile development process prioritizes seamless performance, intuitive user interfaces, and robust backend architectures to ensure your app scales effortlessly as your user base grows.",
+    features: ["iOS and Android native development", "Cross-platform mobile solutions", "Mobile UI and UX design", "App store optimization and launch", "Ongoing maintenance and support"],
     color: "#C8FF00",
     gradient: "from-accent/20 to-accent/10",
   },
-];
+]
 
 // ==========================================
 // APP DIRECTORY CORE SERVICES PAGE COMPONENT
@@ -143,8 +133,7 @@ export default function ServicesPage() {
               What We Do <span className="accent-text">Best</span>
             </h1>
             <p className="text-text-dim text-xl leading-relaxed max-w-xl mb-10">
-              Six core service areas, each staffed by specialists obsessed with
-              delivering measurable results for your business.
+              Five core service areas staffed by technology specialists dedicated to delivering measurable business value and future-ready digital products.
             </p>
             <div className="flex gap-4">
               <Button variant="primary" size="lg" href="/contact">

@@ -77,7 +77,7 @@ export default function ProjectsSection() {
             Featured <span className="text-[#C8FF00]">Case Studies</span>
           </h2>
 
-          <p className="text-gray-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+          <p className="text-white/80 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
             Latest AI, Web3, education, media, and DeFi projects built to turn complex ideas into high-performing digital products.
           </p>
         </header>
@@ -153,7 +153,7 @@ function ProjectCard({
             {project.title}
           </h3>
 
-          <p className="text-gray-400 text-sm leading-relaxed mb-6 group-hover:text-white/80 transition-colors duration-500">
+          <p className="text-white/80 text-sm leading-relaxed mb-6 group-hover:text-white/80 transition-colors duration-500">
             {project.headline}
           </p>
 
@@ -162,7 +162,7 @@ function ProjectCard({
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-[9px] uppercase font-bold tracking-tighter px-3 py-1 rounded-md bg-white/5 border border-white/10 text-gray-400 group-hover:border-[#C8FF00]/30 group-hover:text-white transition-all duration-500"
+                  className="text-[9px] uppercase font-bold tracking-tighter px-3 py-1 rounded-md bg-white/5 border border-white/10 text-white/80 group-hover:border-[#C8FF00]/30 group-hover:text-white transition-all duration-500"
                 >
                   {tag}
                 </span>
