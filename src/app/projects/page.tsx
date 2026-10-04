@@ -78,7 +78,7 @@ export default function ProjectsPage() {
 
   return (
     <div ref={containerRef} className="min-h-screen bg-obsidian pt-20">
-      <section className="relative overflow-hidden py-24">
+      <section className="relative overflow-hidden pt-12 pb-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
           <div className="projects-hero max-w-4xl">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs text-accent border border-accent/20 mb-6 uppercase tracking-widest">
@@ -90,7 +90,7 @@ export default function ProjectsPage() {
             </h1>
 
             <p className="text-white/80 text-xl leading-relaxed max-w-2xl">
-              Explore the latest Pauspan projects across AI platforms, creator tools, Web3 ecosystems, educational products, and media workflow automation.
+              Explore the latest Pauspan projects across enterprise ERP software, AI platforms, creator tools, Web3 ecosystems, educational products, and media workflow automation.
             </p>
           </div>
         </div>

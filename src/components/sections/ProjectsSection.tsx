@@ -7,7 +7,9 @@ import Link from "next/link";
 import {
   ArrowRight,
   BarChart3,
+  Bot,
   Globe,
+  LayoutDashboard,
   Layers,
   Palette,
   Shield,
@@ -17,6 +19,8 @@ import {
 import { CASE_STUDIES, type CaseStudyData } from "@/data/case-studies";
 
 const PROJECT_ICONS: Record<string, ComponentType<LucideProps>> = {
+  "pauspan-erp": LayoutDashboard,
+  "cold-ai": Bot,
   influenceher: Globe,
   "chef-colin": Zap,
   "safari-coin": BarChart3,
@@ -69,16 +73,16 @@ export default function ProjectsSection() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <header className="text-center max-w-3xl mx-auto mb-20">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#1a1a1a] text-[10px] font-bold tracking-widest text-[#C8FF00] border border-white/20 mb-6 uppercase">
+          {/* <span className="inline-block px-4 py-1.5 rounded-full bg-[#1a1a1a] text-[10px] font-bold tracking-widest text-[#C8FF00] border border-white/20 mb-6 uppercase">
             Our Portfolios
-          </span>
+          </span> */}
 
           <h2 className="font-black text-5xl sm:text-6xl lg:text-7xl text-white tracking-[-0.03em] leading-[0.95] mb-6">
             Featured <span className="text-[#C8FF00]">Case Studies</span>
           </h2>
 
           <p className="text-white/80 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            Latest AI, Web3, education, media, and DeFi projects built to turn complex ideas into high-performing digital products.
+            Latest enterprise software, AI, Web3, education, media, and DeFi projects built to turn complex ideas into high-performing digital products.
           </p>
         </header>
 

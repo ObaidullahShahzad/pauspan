@@ -80,11 +80,11 @@ export default function ClientsSection() {
 
         {/* Section Typography Heading */}
         <div className="clients-heading text-center mb-12 opacity-0">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C8FF00]/5 border border-[#C8FF00]/20 text-[10px] mb-4 tracking-widest uppercase">
+          {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C8FF00]/5 border border-[#C8FF00]/20 text-[10px] mb-4 tracking-widest uppercase">
             <Zap size={10} className="text-[#C8FF00]" />
             <span className="text-[#C8FF00] font-bold">Cutting-Edge Tech Stack</span>
             <Zap size={10} className="text-[#C8FF00]" />
-          </div>
+          </div> */}
 
           <h2 className="font-bold text-3xl sm:text-5xl text-white tracking-tighter">
             Technologies We <span className="text-[#C8FF00]">Master</span>

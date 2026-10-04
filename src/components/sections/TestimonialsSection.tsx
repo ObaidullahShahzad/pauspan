@@ -144,9 +144,9 @@ export default function TestimonialsSection() {
 
         {/* Editorial Header Controls Block */}
         <div className="text-center max-w-2xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 text-xs text-accent border border-accent/20 mb-6">
+          {/* <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 text-xs text-accent border border-accent/20 mb-6">
             TESTIMONIALS
-          </div>
+          </div> */}
           <h2 className="font-display font-bold text-4xl sm:text-5xl text-white mb-6">
             Success Stories Worth <span className="accent-text">Sharing</span>
           </h2>

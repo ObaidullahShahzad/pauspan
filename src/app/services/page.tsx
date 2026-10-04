@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { Zap, BarChart3, Globe, Layers, Shield, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Zap, BarChart3, Receipt, Globe, Layers, Shield, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 // ==========================================
 // DATA ARCHITECTURE LAYER CONFIGURATIONS
@@ -14,6 +14,15 @@ const SERVICES_DATA_CONFIG = [
     shortDesc: "Intelligent automation and machine learning solutions that modernize operations and unlock new enterprise value.",
     longDesc: "We evaluate your existing infrastructure and identify high-impact opportunities for artificial intelligence integration. Our specialists develop and deploy custom AI models that streamline workflows, enhance decision making, and provide a definitive competitive edge in your market.",
     features: ["AI readiness assessment", "Process automation and optimization", "Custom machine learning models", "Data strategy and infrastructure", "Team training and AI adoption"],
+    color: "#C8FF00",
+    gradient: "from-accent/20 to-accent/10",
+  },
+  {
+    icon: Receipt,
+    title: "POS, ERP & Accounting",
+    shortDesc: "Unified point-of-sale, ERP, and accounting software that runs sales, stock, and finance from one connected system.",
+    longDesc: "We build business management software that replaces disconnected tools with a single source of truth. From retail point-of-sale to full ERP suites with financial accounting, inventory, purchasing, manufacturing, and HR, every module posts to the same ledger so your numbers always agree.",
+    features: ["Point-of-sale and billing systems", "ERP suites across sales, purchase, and stock", "Financial accounting and reporting", "Role-based access and tax compliance", "Data migration and team onboarding"],
     color: "#C8FF00",
     gradient: "from-accent/20 to-accent/10",
   },
@@ -122,7 +131,7 @@ export default function ServicesPage() {
     <div className="min-h-screen pt-20">
 
       {/* Hero Presentation Layout */}
-      <section ref={heroRef} className="py-32 relative overflow-hidden">
+      <section ref={heroRef} className="pt-12 pb-32 relative overflow-hidden">
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="services-hero max-w-3xl [&>*]:opacity-0">
@@ -133,7 +142,7 @@ export default function ServicesPage() {
               What We Do <span className="accent-text">Best</span>
             </h1>
             <p className="text-text-dim text-xl leading-relaxed max-w-xl mb-10">
-              Five core service areas staffed by technology specialists dedicated to delivering measurable business value and future-ready digital products.
+              Six core service areas staffed by technology specialists dedicated to delivering measurable business value and future-ready digital products.
             </p>
             <div className="flex gap-4">
               <Button variant="primary" size="lg" href="/contact">

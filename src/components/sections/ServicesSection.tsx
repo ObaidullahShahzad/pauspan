@@ -8,6 +8,7 @@ import {
   CheckCircle2,
   Code2,
   Layers,
+  Receipt,
   Smartphone,
 } from "lucide-react";
 
@@ -30,6 +31,22 @@ const SERVICES = [
   },
   {
     num: "02",
+    icon: Receipt,
+    title: "POS, ERP & Accounting",
+    summary:
+      "Unified point-of-sale, ERP, and accounting software that runs sales, stock, and finance from one connected system.",
+    description:
+      "We build business management software that replaces disconnected tools with a single source of truth. From retail point-of-sale to full ERP suites with financial accounting, inventory, purchasing, manufacturing, and HR, every module posts to the same ledger so your numbers always agree.",
+    features: [
+      "Point-of-sale and billing systems",
+      "ERP suites across sales, purchase, and stock",
+      "Financial accounting and reporting",
+      "Role-based access and tax compliance",
+      "Data migration and team onboarding",
+    ],
+  },
+  {
+    num: "03",
     icon: Code2,
     title: "Web Development",
     summary:
@@ -45,7 +62,7 @@ const SERVICES = [
     ],
   },
   {
-    num: "03",
+    num: "04",
     icon: Bot,
     title: "AI SaaS",
     summary:
@@ -61,7 +78,7 @@ const SERVICES = [
     ],
   },
   {
-    num: "04",
+    num: "05",
     icon: Layers,
     title: "MVP Design & Development",
     summary:
@@ -77,7 +94,7 @@ const SERVICES = [
     ],
   },
   {
-    num: "05",
+    num: "06",
     icon: Smartphone,
     title: "Mobile App Development",
     summary:
@@ -109,9 +126,9 @@ export default function ServicesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#1a1a1a] text-[10px] font-bold tracking-widest text-[#C8FF00] border border-white/20 mb-6 uppercase">
+            {/* <span className="inline-block px-4 py-1.5 rounded-full bg-[#1a1a1a] text-[10px] font-bold tracking-widest text-[#C8FF00] border border-white/20 mb-6 uppercase">
               Pauspan Services
-            </span>
+            </span> */}
 
             <h2 className="font-black text-6xl text-white leading-[0.95] mb-6">
               What We Do{" "}
@@ -121,7 +138,7 @@ export default function ServicesSection() {
             </h2>
 
             <p className="text-white/80 text-lg leading-relaxed">
-              Five core service areas staffed by technology specialists
+              Six core service areas staffed by technology specialists
               dedicated to delivering measurable business value and
               future-ready digital products.
             </p>
@@ -143,16 +160,16 @@ export default function ServicesSection() {
 
       {/* Mobile Header */}
       <div className="lg:hidden">
-        <span className="inline-block px-4 py-1.5 rounded-full bg-[#1a1a1a] text-[10px] font-bold tracking-widest text-[#C8FF00] border border-white/20 mb-6 uppercase">
+        {/* <span className="inline-block px-4 py-1.5 rounded-full bg-[#1a1a1a] text-[10px] font-bold tracking-widest text-[#C8FF00] border border-white/20 mb-6 uppercase">
           Pauspan Services
-        </span>
+        </span> */}
 
         <h2 className="font-black text-5xl text-white leading-[0.95] mb-6">
           What We Do <span className="text-[#C8FF00]">Best</span>
         </h2>
 
         <p className="text-white/80 text-lg leading-relaxed mb-12">
-          Five core service areas staffed by technology specialists
+          Six core service areas staffed by technology specialists
           dedicated to delivering measurable business value and
           future-ready digital products.
         </p>

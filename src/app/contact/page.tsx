@@ -51,12 +51,12 @@ export default function ContactPage() {
   return (
     <div ref={containerRef} className="min-h-screen pt-20 bg-black">
       {/* Hero */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="pt-12 pb-24 relative overflow-hidden">
         <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-accent/4 rounded-full blur-3xl" />
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-2xl flex flex-col items-start">
             <div className="contact-animate inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs text-accent border border-accent/20 mb-6 opacity-0">
-              CONTACT
+              
             </div>
             <h1 className="contact-animate font-display font-bold text-5xl sm:text-6xl text-white leading-[1.05] mb-6 opacity-0">
               Let&apos;s Build <span className="accent-text">Together</span>

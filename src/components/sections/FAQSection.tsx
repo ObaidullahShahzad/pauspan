@@ -79,9 +79,9 @@ export default function FAQSection() {
 
         {/* Section Heading Group */}
         <div className="text-center max-w-2xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#C8FF00]/10 text-xs text-[#C8FF00] border border-[#C8FF00]/20 mb-6">
+          {/* <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#C8FF00]/10 text-xs text-[#C8FF00] border border-[#C8FF00]/20 mb-6">
             FAQ
-          </div>
+          </div> */}
           <h2 className="font-display font-bold text-4xl sm:text-5xl text-white mb-6 tracking-tight">
             Common <span className="text-[#C8FF00]">Questions</span>
           </h2>

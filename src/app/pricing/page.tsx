@@ -36,7 +36,7 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="pt-12 pb-24 relative overflow-hidden">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-accent/5 rounded-full blur-3xl" />
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="pricing-page-hero text-center max-w-3xl mx-auto">

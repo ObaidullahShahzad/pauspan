@@ -29,9 +29,188 @@ export interface CaseStudyData {
   };
   outcomes: CaseStudyPoint[];
   liveUrl?: string;
+  video?: string;
+  extraLinks?: { label: string; url: string }[];
 }
 
 export const CASE_STUDIES: CaseStudyData[] = [
+  {
+    slug: "pauspan-erp",
+    title: "Pauspan ERP",
+    eyebrow: "Unified Business Suite",
+    headline: "Running an entire business — finance, stock, sales, production and HR — from one connected dashboard.",
+    year: "2026",
+    category: "ERP Platform",
+    result: "8 Modules, One Ledger",
+    image: "/project/pauspan-erp-dashboard.png",
+    video: "/project/pauspan-erp-demo.mp4",
+    accentColor: "#C8FF00",
+    gradient: "from-[#C8FF00]/20 via-blue-400/10 to-transparent",
+    services: [
+      "ERP Product Engineering",
+      "Full-Stack Development",
+      "Role-Based Access Architecture",
+      "Tax Compliance Integration",
+      "UX & UI Design",
+    ],
+    industry: ["Enterprise Software", "Accounting & Finance", "Manufacturing", "Distribution & Retail"],
+    technologies: [
+      "React 19",
+      "Vite",
+      "Framer Motion",
+      "REST API Architecture",
+      "Role-Based Auth",
+      "FBR e-Invoicing API",
+    ],
+    tags: ["ERP", "Accounting", "SaaS"],
+    overview:
+      "Pauspan ERP is a modern business suite that unifies financial accounting, inventory, sales, purchase, manufacturing and human resources behind a single login. Every module writes to the same ledger, so a manager, an accountant and a warehouse lead are always looking at the same numbers — across more than 40 document and report types.",
+    challenge:
+      "Growing businesses end up running finance in one tool, stock in another and payroll in a spreadsheet. Reconciling them is manual, slow and error-prone, and the same data gets re-keyed at every handoff. The product had to collapse all of that into one suite without becoming the kind of heavy, unusable enterprise software it was meant to replace — and while meeting local tax-authority e-invoicing rules.",
+    capabilities: [
+      {
+        title: "Financial Accounting Core",
+        description:
+          "Chart of accounts, journal vouchers, cash book, bank accounts, account ledgers and trial balance — always in sync with every other module.",
+      },
+      {
+        title: "Multi-Warehouse Inventory",
+        description:
+          "Stock across locations with categories, units and item groups, backed by real-time item ledgers and live stock valuation.",
+      },
+      {
+        title: "Connected Sales & Purchase Cycles",
+        description:
+          "Quotation to order, delivery, invoice and return on the sales side; purchase requests through receipt notes and invoices on the other — one pipeline, no re-keying.",
+      },
+      {
+        title: "Manufacturing & Production",
+        description:
+          "Bill of materials, work orders and production entries for teams that make what they sell, posting straight into stock and costing.",
+      },
+      {
+        title: "Per-User Form Authorization",
+        description:
+          "Every screen maps to a form code, so each employee is granted exactly the modules they need — enforced per user, with session auto-expiry on unattended logins.",
+      },
+      {
+        title: "FBR e-Invoicing Compliance",
+        description:
+          "A live tax-authority integration plus a dedicated API test console keep invoicing and reporting aligned as requirements change.",
+      },
+    ],
+    approach:
+      "We built Pauspan ERP as a product, not a project. The architecture puts a single shared ledger at the center and treats each department as a module on top of it, which is what keeps finance, sales, purchase and stock from drifting apart. The interface is a React 19 and Vite workspace tuned for data-dense screens — fast tables, light and dark themes, and motion used only where it clarifies state. Access control was designed in from the first commit: form-level authorization, session countdowns and a one-click re-login that never loses in-progress work.",
+    testimonial: {
+      quote:
+        "Pauspan ERP started from one question: why should a growing business run finance in one tool, stock in another, and payroll in a spreadsheet? Every module in the suite writes to the same ledger, so the numbers a manager sees in the morning are the numbers the accountant closes the month with.",
+      author: "Pauspan Product Team",
+      role: "Builders of Pauspan ERP",
+    },
+    outcomes: [
+      {
+        title: "One Login Across Departments",
+        description:
+          "Eight business modules replaced a stack of disconnected tools, with a single daily dashboard as the entry point for every role.",
+      },
+      {
+        title: "No Re-Keying Between Cycles",
+        description:
+          "Documents move through a connected pipeline, so sales, purchase and accounting stay reconciled without manual data entry.",
+      },
+      {
+        title: "Compliance Without Extra Work",
+        description:
+          "Built-in e-invoicing and tax reporting removed a recurring month-end scramble from the finance team's workload.",
+      },
+      {
+        title: "Access Control That Scales",
+        description:
+          "Form-level permissions let the suite onboard new staff and whole departments without opening up the books to everyone.",
+      },
+    ],
+    liveUrl: "https://erp.pauspan.com",
+    extraLinks: [{ label: "Visit Product", url: "https://apps.digicare.com.pk" }],
+  },
+  {
+    slug: "cold-ai",
+    title: "Cold AI",
+    eyebrow: "B2B Sales Intelligence",
+    headline: "An AI-powered sales agent dashboard that turns cold outreach into a managed, data-driven pipeline.",
+    year: "2026",
+    category: "AI SaaS",
+    result: "AI-Driven Outreach",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=760&fit=crop&q=80",
+    accentColor: "#C8FF00",
+    gradient: "from-[#C8FF00]/20 via-indigo-300/10 to-transparent",
+    services: [
+      "AI Product Engineering",
+      "Full-Stack Development",
+      "SaaS Architecture",
+      "Dashboard UX & UI Design",
+    ],
+    industry: ["B2B Sales", "Sales Technology", "Artificial Intelligence"],
+    technologies: ["Next.js", "React.js", "Generative AI", "REST APIs", "Tailwind CSS"],
+    tags: ["AI Agent", "SaaS", "B2B"],
+    overview:
+      "Cold AI is a B2B sales intelligence product built around an AI-powered sales agent dashboard. It gives sales teams one workspace to run outbound outreach and track how it performs, with an AI agent handling the repetitive work.",
+    challenge:
+      "Outbound sales depends on research, personalization, and follow-up that take hours per lead and rarely scale with a small team. The product needed to automate that work with AI while keeping the human in control, and present it in a dashboard that stays fast and clear as activity grows.",
+    capabilities: [
+      {
+        title: "AI Sales Agent",
+        description:
+          "An agent that supports outbound prospecting and outreach so reps spend their time on conversations instead of preparation.",
+      },
+      {
+        title: "Centralized Sales Dashboard",
+        description:
+          "A single workspace to monitor outreach activity, leads, and performance without switching between tools.",
+      },
+      {
+        title: "Intelligence-Led Targeting",
+        description:
+          "Data-driven insights help teams focus on the accounts and messages most likely to convert.",
+      },
+      {
+        title: "Fast, Responsive Interface",
+        description:
+          "A polished Next.js frontend with a themed design system that stays quick and readable on data-heavy screens.",
+      },
+    ],
+    approach:
+      "We built Cold AI as a SaaS product from the ground up, pairing a Next.js and React dashboard with AI-driven agent workflows. The interface was designed around daily sales operations, with clear states, quick loading, and a consistent visual system so teams can act on insights immediately.",
+    testimonial: {
+      quote:
+        "Cold AI was built on a simple idea: sales teams should spend their time talking to buyers, not preparing for them. The agent handles the groundwork and the dashboard keeps the whole pipeline in view.",
+      author: "Pauspan Product Team",
+      role: "Builders of Cold AI",
+    },
+    outcomes: [
+      {
+        title: "Less Manual Prospecting",
+        description:
+          "AI-assisted workflows reduce the repetitive research and outreach preparation that slows sales teams down.",
+      },
+      {
+        title: "One View of the Pipeline",
+        description:
+          "A single dashboard replaces scattered tools for tracking outreach and results.",
+      },
+      {
+        title: "Scalable Outbound Process",
+        description:
+          "Small teams can run structured, repeatable outreach without growing headcount at the same rate.",
+      },
+      {
+        title: "Production-Ready SaaS Foundation",
+        description:
+          "A modern, themed codebase ready to extend with new agent capabilities and integrations.",
+      },
+    ],
+    liveUrl: "https://coldai.pauspan.com",
+  },
   {
     slug: "influenceher",
     title: "InfluenceHer",

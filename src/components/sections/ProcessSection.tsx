@@ -66,9 +66,9 @@ export default function ProcessSection() {
 
         {/* Section Typography Intro Wrapper */}
         <div className="text-center max-w-2xl mx-auto mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs text-accent border border-accent/20 mb-6">
+          {/* <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card text-xs text-accent border border-accent/20 mb-6">
             OUR PROCESS
-          </div>
+          </div> */}
           <h2 className="font-display font-bold text-4xl sm:text-5xl text-text mb-6">
             How We Turn <span className="accent-text">Vision</span> Into Reality
           </h2>

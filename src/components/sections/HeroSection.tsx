@@ -74,7 +74,7 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className={`relative min-h-screen flex items-center overflow-hidden pt-20 transition-opacity duration-300 ${isReady ? "opacity-100" : "opacity-0"
+      className={`relative min-h-screen flex items-start overflow-hidden pt-20 transition-opacity duration-300 ${isReady ? "opacity-100" : "opacity-0"
         }`}
     >
       {/* Dynamic Background with Radial Glow and Grid Overlay */}
@@ -91,18 +91,14 @@ export default function HeroSection() {
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full py-20">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full pt-6 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
           {/* Left Column */}
           <div className="space-y-8">
 
             {/* Badge */}
-            <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-xs font-medium text-accent border border-accent/20">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              Digital Transformation &amp; Strategy
-              <Sparkles size={12} />
-            </div>
+            
 
             {/* ✅ HEADING — Image 1 style:
                 - Mixed case (not ALL CAPS)

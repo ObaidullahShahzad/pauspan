@@ -39,11 +39,9 @@ const FOOTER_LINKS_CONFIG: Record<string, FooterLink[]> = {
     { label: "Beks Media", href: "/projects/beks-media" },
   ],
   "Full Stack Projects": [
-    { label: "Digital Twin",        href: "#" },
-    { label: "Slay Canvas",         href: "#" },
-    { label: "Faris",               href: "#" },
-    { label: "AI Complaint Setter", href: "#" },
-    { label: "Malakah",             href: "#" },
+    { label: "Pauspan ERP",        href: "/projects/pauspan-erp" },
+    { label: "Slay Canvas",         href: "https://slaycanvas.pauspan.com" },
+    { label: "Cold AI",             href: "/projects/cold-ai" },
   ],
   Company: [
     { label: "About Us",     href: "/about" },
